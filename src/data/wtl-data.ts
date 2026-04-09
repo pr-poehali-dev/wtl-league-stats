@@ -130,7 +130,7 @@ const zeroStats = { kills: 0, deaths: 0, assists: 0, kda: 0, winRate: 0, matches
 export const players: Player[] = [
   // Willow Team
   { id: 1, nickname: 'whysonk1', name: 'whysonk1', role: 'Игрок', teamId: 1, avatar: '🎮', country: '🇷🇺', stats: zeroStats, achievements: [] },
-  { id: 2, nickname: '2kismain', name: '2kismain', role: 'Игрок', teamId: 1, avatar: '🎮', country: '🇷🇺', stats: zeroStats, achievements: [] },
+  { id: 2, nickname: 'kismain', name: 'kismain', role: 'Игрок', teamId: 1, avatar: '🎮', country: '🇷🇺', stats: zeroStats, achievements: [] },
   { id: 3, nickname: 'Makl0n', name: 'Makl0n', role: 'Игрок', teamId: 1, avatar: '🎮', country: '🇷🇺', stats: zeroStats, achievements: [] },
   { id: 4, nickname: 'dimkapeek', name: 'dimkapeek', role: 'Игрок', teamId: 1, avatar: '🎮', country: '🇷🇺', stats: zeroStats, achievements: [] },
   { id: 5, nickname: 'dan11l', name: 'dan11l', role: 'Капитан', teamId: 1, avatar: '🎮', country: '🇷🇺', stats: zeroStats, achievements: [] },
