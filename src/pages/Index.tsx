@@ -218,8 +218,8 @@ function HomePage({ navigate }: { navigate: (s: Section) => void }) {
       <section className="py-10 border-y" style={{ borderColor: 'rgba(224,48,48,0.12)', background: 'var(--surface-2)' }}>
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: 'Команд', value: '0', icon: 'Users' },
-            { label: 'Игроков', value: '0', icon: 'User' },
+            { label: 'Команд', value: '6', icon: 'Users' },
+            { label: 'Игроков', value: '30', icon: 'User' },
             { label: 'Матчей сыграно', value: '0', icon: 'Sword' },
             { label: 'Сезон', value: '2026', icon: 'Star' },
           ].map((s) => (
