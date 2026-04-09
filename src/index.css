@@ -4,42 +4,42 @@
 
 @layer base {
   :root {
-    --background: 220 20% 6%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 97%;
 
-    --card: 220 18% 9%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 97%;
 
-    --popover: 220 18% 9%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 97%;
 
-    --primary: 45 100% 55%;
-    --primary-foreground: 220 20% 6%;
+    --primary: 0 80% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 15%;
+    --secondary: 0 5% 15%;
     --secondary-foreground: 0 0% 85%;
 
-    --muted: 220 15% 12%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 0 5% 12%;
+    --muted-foreground: 0 5% 55%;
 
-    --accent: 195 100% 50%;
-    --accent-foreground: 220 20% 6%;
+    --accent: 0 80% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 15%;
-    --ring: 45 100% 55%;
+    --border: 0 5% 18%;
+    --input: 0 5% 15%;
+    --ring: 0 80% 50%;
 
     --radius: 0.5rem;
 
-    --neon-gold: #f5c518;
-    --neon-cyan: #00d4ff;
+    --neon-gold: #e03030;
+    --neon-cyan: #ff6b6b;
     --neon-red: #ff3b3b;
-    --surface-1: #0d1117;
-    --surface-2: #161b22;
-    --surface-3: #1f2937;
+    --surface-1: #111111;
+    --surface-2: #1a1a1a;
+    --surface-3: #222222;
   }
 }
 
@@ -73,54 +73,10 @@
     font-family: "Roboto", sans-serif;
   }
 
-  .neon-text-gold {
-    color: var(--neon-gold);
-    text-shadow: 0 0 20px rgba(245, 197, 24, 0.5);
-  }
-
-  .neon-text-cyan {
-    color: var(--neon-cyan);
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-  }
-
-  .neon-border-gold {
-    border-color: var(--neon-gold);
-    box-shadow: 0 0 15px rgba(245, 197, 24, 0.2);
-  }
-
-  .neon-border-cyan {
-    border-color: var(--neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
-  }
-
   .glass-card {
-    background: rgba(22, 27, 34, 0.8);
+    background: rgba(26, 26, 26, 0.85);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .gradient-gold {
-    background: linear-gradient(135deg, #f5c518 0%, #ff8c00 100%);
-  }
-
-  .gradient-dark {
-    background: linear-gradient(
-      180deg,
-      var(--surface-1) 0%,
-      var(--surface-2) 100%
-    );
-  }
-
-  .clip-diagonal {
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
-  }
-
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
   }
 
   .hover-lift {
@@ -131,40 +87,14 @@
 
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
   }
 
   .grid-bg {
     background-image:
-      linear-gradient(rgba(245, 197, 24, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(245, 197, 24, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(224, 48, 48, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(224, 48, 48, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
-  }
-
-  .rank-1 {
-    color: #f5c518;
-  }
-  .rank-2 {
-    color: #c0c0c0;
-  }
-  .rank-3 {
-    color: #cd7f32;
-  }
-
-  .medal-gold {
-    background: linear-gradient(135deg, #f5c518, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .medal-silver {
-    background: linear-gradient(135deg, #e0e0e0, #9e9e9e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .medal-bronze {
-    background: linear-gradient(135deg, #cd7f32, #a0522d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   .scrollbar-none::-webkit-scrollbar {
@@ -183,16 +113,6 @@
   }
   50% {
     transform: translateY(-10px);
-  }
-}
-
-@keyframes glow-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 10px rgba(245, 197, 24, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(245, 197, 24, 0.7);
   }
 }
 

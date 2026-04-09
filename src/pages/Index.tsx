@@ -57,7 +57,7 @@ export default function Index() {
   return (
     <div className="min-h-screen grid-bg" style={{ background: 'var(--surface-1)' }}>
       {/* NAVIGATION */}
-      <nav className="sticky top-0 z-50 border-b" style={{ background: 'rgba(13,17,23,0.95)', backdropFilter: 'blur(20px)', borderColor: 'rgba(245,197,24,0.15)' }}>
+      <nav className="sticky top-0 z-50 border-b" style={{ background: 'rgba(17,17,17,0.95)', backdropFilter: 'blur(20px)', borderColor: 'rgba(224,48,48,0.2)' }}>
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <button onClick={() => navigate('home')} className="flex items-center gap-3 group">
             <div className="w-9 h-9 flex items-center justify-center rounded font-display font-bold text-sm" style={{ background: 'var(--neon-gold)', color: 'var(--surface-1)' }}>
@@ -96,7 +96,7 @@ export default function Index() {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden border-t px-4 py-2" style={{ borderColor: 'rgba(245,197,24,0.1)', background: 'var(--surface-2)' }}>
+          <div className="md:hidden border-t px-4 py-2" style={{ borderColor: 'rgba(224,48,48,0.15)', background: 'var(--surface-2)' }}>
             {navItems.map(item => (
               <button
                 key={item.id}
@@ -113,7 +113,7 @@ export default function Index() {
       </nav>
 
       <main>
-        {activeSection === 'home' && <HomePage navigate={navigate} sortedTeams={sortedTeams} openTeam={openTeam} />}
+        {activeSection === 'home' && <HomePage navigate={navigate} />}
         {activeSection === 'standings' && <StandingsPage sortedTeams={sortedTeams} openTeam={openTeam} />}
         {activeSection === 'teams' && !selectedTeam && <TeamsPage teams={teams} openTeam={openTeam} />}
         {activeSection === 'teams' && selectedTeam && <TeamDetailPage team={selectedTeam} openPlayer={openPlayer} goBack={() => setSelectedTeam(null)} />}
@@ -126,18 +126,18 @@ export default function Index() {
 }
 
 /* ======================== HOME PAGE ======================== */
-function HomePage({ navigate, sortedTeams, openTeam }: { navigate: (s: Section) => void; sortedTeams: Team[]; openTeam: (t: Team) => void }) {
+function HomePage({ navigate }: { navigate: (s: Section) => void }) {
   const liveMatch = matches.find(m => m.status === 'live');
 
   return (
     <div>
       {/* HERO */}
-      <section className="relative overflow-hidden" style={{ minHeight: '85vh', background: 'linear-gradient(135deg, #0d1117 0%, #0d1117 60%, rgba(245,197,24,0.04) 100%)' }}>
+      <section className="relative overflow-hidden" style={{ minHeight: '85vh', background: 'linear-gradient(135deg, #111111 0%, #111111 60%, rgba(224,48,48,0.05) 100%)' }}>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-5" style={{ background: 'var(--neon-gold)', filter: 'blur(80px)' }} />
-          <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-5" style={{ background: 'var(--neon-cyan)', filter: 'blur(60px)' }} />
+          <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-[0.07]" style={{ background: 'var(--neon-gold)', filter: 'blur(80px)' }} />
+          <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-[0.04]" style={{ background: '#ffffff', filter: 'blur(60px)' }} />
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="absolute opacity-[0.03] font-display font-bold select-none"
+            <div key={i} className="absolute opacity-[0.025] font-display font-bold select-none"
               style={{
                 fontSize: `${100 + i * 40}px`,
                 color: 'var(--neon-gold)',
@@ -170,19 +170,19 @@ function HomePage({ navigate, sortedTeams, openTeam }: { navigate: (s: Section) 
             </h1>
 
             <p className="font-body text-lg mb-10 max-w-xl animate-fade-in" style={{ color: '#9ca3af', lineHeight: 1.7, animationDelay: '0.2s', opacity: 0 }}>
-              Профессиональная киберспортивная лига. 6 команд, 30 игроков, бесконечная битва за чемпионский титул.
+              Профессиональная киберспортивная лига. Сезон только начинается — следи за командами, игроками и результатами матчей.
             </p>
 
             <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: '0.3s', opacity: 0 }}>
               <button onClick={() => navigate('standings')}
                 className="flex items-center gap-2 px-7 py-3.5 rounded font-display font-semibold text-sm tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                style={{ background: 'var(--neon-gold)', color: 'var(--surface-1)' }}>
+                style={{ background: 'var(--neon-gold)', color: '#ffffff' }}>
                 <Icon name="Trophy" size={16} />
                 Рейтинг команд
               </button>
               <button onClick={() => navigate('schedule')}
                 className="flex items-center gap-2 px-7 py-3.5 rounded font-display font-semibold text-sm tracking-wide border transition-all duration-200 hover:scale-105"
-                style={{ borderColor: 'rgba(245,197,24,0.4)', color: '#e5e7eb', background: 'rgba(245,197,24,0.05)' }}>
+                style={{ borderColor: 'rgba(224,48,48,0.4)', color: '#e5e7eb', background: 'rgba(224,48,48,0.06)' }}>
                 <Icon name="Calendar" size={16} />
                 Расписание
               </button>
@@ -215,16 +215,16 @@ function HomePage({ navigate, sortedTeams, openTeam }: { navigate: (s: Section) 
       </section>
 
       {/* STATS BAR */}
-      <section className="py-10 border-y" style={{ borderColor: 'rgba(245,197,24,0.1)', background: 'var(--surface-2)' }}>
+      <section className="py-10 border-y" style={{ borderColor: 'rgba(224,48,48,0.12)', background: 'var(--surface-2)' }}>
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: 'Команд', value: '6', icon: 'Users' },
-            { label: 'Игроков', value: '30', icon: 'User' },
-            { label: 'Матчей сыграно', value: '24', icon: 'Sword' },
+            { label: 'Команд', value: '0', icon: 'Users' },
+            { label: 'Игроков', value: '0', icon: 'User' },
+            { label: 'Матчей сыграно', value: '0', icon: 'Sword' },
             { label: 'Сезон', value: '2026', icon: 'Star' },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(245,197,24,0.1)' }}>
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(224,48,48,0.1)' }}>
                 <Icon name={s.icon} size={18} style={{ color: 'var(--neon-gold)' }} />
               </div>
               <div>
@@ -236,97 +236,27 @@ function HomePage({ navigate, sortedTeams, openTeam }: { navigate: (s: Section) 
         </div>
       </section>
 
-      {/* TOP TEAMS */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="font-display font-bold text-2xl text-white tracking-wide">ТОП КОМАНДЫ</h2>
-          <button onClick={() => navigate('standings')} className="font-body text-sm flex items-center gap-1" style={{ color: 'var(--neon-gold)' }}>
-            Все <Icon name="ChevronRight" size={14} />
-          </button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {sortedTeams.slice(0, 3).map((team, idx) => (
-            <button key={team.id} onClick={() => { navigate('teams'); openTeam(team); }}
-              className="glass-card rounded-xl p-6 text-left hover-lift border transition-all duration-200 group"
-              style={{ borderColor: idx === 0 ? 'rgba(245,197,24,0.3)' : 'rgba(255,255,255,0.05)' }}>
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">{team.logo}</span>
-                  <div>
-                    <div className="font-display font-semibold text-base text-white">{team.name}</div>
-                    <div className="font-body text-xs" style={{ color: '#6b7280' }}>[{team.tag}]</div>
-                  </div>
-                </div>
-                <div className="font-display font-bold text-xl" style={{ color: idx === 0 ? '#f5c518' : idx === 1 ? '#c0c0c0' : '#cd7f32' }}>
-                  #{idx + 1}
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <div className="font-body text-sm" style={{ color: '#6b7280' }}>Очки</div>
-                <div className="font-display font-bold text-xl" style={{ color: 'var(--neon-gold)' }}>{team.points}</div>
-              </div>
-              <div className="mt-3 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
-                <div className="h-full rounded-full" style={{ width: `${team.winRate}%`, background: `linear-gradient(90deg, ${team.color}, var(--neon-gold))` }} />
-              </div>
-              <div className="font-body text-xs mt-1" style={{ color: '#6b7280' }}>{team.winRate}% побед</div>
+      {/* COMING SOON */}
+      <section className="py-20 max-w-7xl mx-auto px-4 pb-24">
+        <div className="glass-card rounded-2xl p-12 text-center border" style={{ borderColor: 'rgba(224,48,48,0.15)' }}>
+          <div className="text-5xl mb-4">🏆</div>
+          <h2 className="font-display font-bold text-2xl text-white mb-3">Сезон скоро начнётся</h2>
+          <p className="font-body" style={{ color: '#6b7280', maxWidth: 400, margin: '0 auto' }}>
+            Команды регистрируются, состав формируется. Следи за обновлениями!
+          </p>
+          <div className="flex justify-center gap-4 mt-8 flex-wrap">
+            <button onClick={() => navigate('teams')}
+              className="flex items-center gap-2 px-6 py-3 rounded font-display font-semibold text-sm border transition-all hover:scale-105"
+              style={{ borderColor: 'rgba(224,48,48,0.3)', color: '#e5e7eb', background: 'rgba(224,48,48,0.06)' }}>
+              <Icon name="Users" size={15} />
+              Команды
             </button>
-          ))}
-        </div>
-      </section>
-
-      {/* TOP PLAYERS */}
-      <section className="pb-20 max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="font-display font-bold text-2xl text-white tracking-wide">ЛУЧШИЕ ИГРОКИ</h2>
-          <button onClick={() => navigate('players')} className="font-body text-sm flex items-center gap-1" style={{ color: 'var(--neon-gold)' }}>
-            Все <Icon name="ChevronRight" size={14} />
-          </button>
-        </div>
-        <div className="glass-card rounded-xl overflow-hidden border" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-          <div className="overflow-x-auto scrollbar-none">
-            <table className="w-full min-w-[560px]">
-              <thead>
-                <tr className="border-b" style={{ borderColor: 'rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}>
-                  {['#', 'Игрок', 'Команда', 'KDA', 'Убийства', 'Победы', 'MVP'].map(h => (
-                    <th key={h} className="font-body text-xs font-medium py-3 text-left px-4" style={{ color: '#6b7280' }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[...players].sort((a, b) => b.stats.kda - a.stats.kda).slice(0, 5).map((p, i) => {
-                  const team = getTeamById(p.teamId);
-                  return (
-                    <tr key={p.id} className="border-b" style={{ borderColor: 'rgba(255,255,255,0.04)' }}>
-                      <td className="py-3 px-4">
-                        <span className="font-display font-bold text-sm" style={{ color: i === 0 ? '#f5c518' : i === 1 ? '#c0c0c0' : i === 2 ? '#cd7f32' : '#6b7280' }}>
-                          {i + 1}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2">
-                          <span>{p.avatar}</span>
-                          <div>
-                            <div className="font-body font-medium text-sm text-white">{p.nickname}</div>
-                            <div className="font-body text-xs" style={{ color: '#6b7280' }}>{p.name}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="font-body text-sm font-medium" style={{ color: team?.color }}>{team?.tag}</span>
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="font-display font-bold text-sm" style={{ color: 'var(--neon-gold)' }}>{p.stats.kda.toFixed(1)}</span>
-                      </td>
-                      <td className="py-3 px-4 font-body text-sm text-white">{p.stats.kills}</td>
-                      <td className="py-3 px-4">
-                        <span className="font-body text-sm" style={{ color: '#10b981' }}>{p.stats.winRate}%</span>
-                      </td>
-                      <td className="py-3 px-4 font-body text-sm text-white">{p.stats.mvp}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <button onClick={() => navigate('schedule')}
+              className="flex items-center gap-2 px-6 py-3 rounded font-display font-semibold text-sm border transition-all hover:scale-105"
+              style={{ borderColor: 'rgba(224,48,48,0.3)', color: '#e5e7eb', background: 'rgba(224,48,48,0.06)' }}>
+              <Icon name="Calendar" size={15} />
+              Расписание
+            </button>
           </div>
         </div>
       </section>
@@ -364,12 +294,18 @@ function StandingsPage({ sortedTeams, openTeam }: { sortedTeams: Team[]; openTea
           ))}
         </div>
 
+        {sortedTeams.length === 0 && (
+          <div className="py-16 text-center">
+            <div className="text-4xl mb-3">🏆</div>
+            <div className="font-body text-sm" style={{ color: '#6b7280' }}>Команды пока не зарегистрированы</div>
+          </div>
+        )}
         {sortedTeams.map((team, idx) => (
           <button key={team.id} onClick={() => openTeam(team)}
             className="grid grid-cols-12 px-6 py-4 w-full text-left border-b transition-colors hover:bg-white/[0.02] group"
             style={{ borderColor: 'rgba(255,255,255,0.04)' }}>
             <div className="col-span-1 flex items-center">
-              <span className="font-display font-bold text-lg" style={{ color: idx === 0 ? '#f5c518' : idx === 1 ? '#c0c0c0' : idx === 2 ? '#cd7f32' : '#6b7280' }}>
+              <span className="font-display font-bold text-lg" style={{ color: idx === 0 ? 'var(--neon-gold)' : idx === 1 ? '#c0c0c0' : idx === 2 ? '#cd7f32' : '#6b7280' }}>
                 {idx + 1}
               </span>
             </div>
@@ -378,7 +314,7 @@ function StandingsPage({ sortedTeams, openTeam }: { sortedTeams: Team[]; openTea
                 {team.logo}
               </div>
               <div>
-                <div className="font-body font-semibold text-sm text-white group-hover:text-yellow-400 transition-colors">{team.name}</div>
+                <div className="font-body font-semibold text-sm text-white group-hover:text-red-400 transition-colors">{team.name}</div>
                 <div className="font-body text-xs" style={{ color: team.color }}>[{team.tag}]</div>
               </div>
             </div>
@@ -412,6 +348,13 @@ function TeamsPage({ teams: teamList, openTeam }: { teams: Team[]; openTeam: (t:
         <p className="font-body text-sm ml-4" style={{ color: '#6b7280' }}>Все участники WTL League 2026</p>
       </div>
 
+      {teamList.length === 0 && (
+        <div className="glass-card rounded-2xl p-16 text-center border" style={{ borderColor: 'rgba(224,48,48,0.15)' }}>
+          <div className="text-5xl mb-4">👥</div>
+          <h2 className="font-display font-bold text-xl text-white mb-2">Команды не зарегистрированы</h2>
+          <p className="font-body text-sm" style={{ color: '#6b7280' }}>Регистрация команд откроется перед стартом сезона</p>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {teamList.map((team) => (
           <button key={team.id} onClick={() => openTeam(team)}
@@ -573,6 +516,13 @@ function PlayersPage({ openPlayer }: { openPlayer: (p: Player) => void }) {
         ))}
       </div>
 
+      {sorted.length === 0 && (
+        <div className="glass-card rounded-2xl p-16 text-center border" style={{ borderColor: 'rgba(224,48,48,0.15)' }}>
+          <div className="text-5xl mb-4">🎮</div>
+          <h2 className="font-display font-bold text-xl text-white mb-2">Игроки пока не добавлены</h2>
+          <p className="font-body text-sm" style={{ color: '#6b7280' }}>Составы команд будут опубликованы после регистрации</p>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {sorted.map((player, idx) => {
           const team = getTeamById(player.teamId);
@@ -751,6 +701,13 @@ function SchedulePage() {
         ))}
       </div>
 
+      {filtered.length === 0 && (
+        <div className="glass-card rounded-2xl p-16 text-center border" style={{ borderColor: 'rgba(224,48,48,0.15)' }}>
+          <div className="text-5xl mb-4">📅</div>
+          <h2 className="font-display font-bold text-xl text-white mb-2">Матчи пока не запланированы</h2>
+          <p className="font-body text-sm" style={{ color: '#6b7280' }}>Расписание появится после формирования составов команд</p>
+        </div>
+      )}
       <div className="space-y-3">
         {filtered.map((match) => {
           const home = getTeamById(match.homeTeamId);
