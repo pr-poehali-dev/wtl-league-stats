@@ -3,6 +3,26 @@ import Icon from '@/components/ui/icon';
 import { teams, players, matches, getTeamById, getTeamPlayers } from '@/data/wtl-data';
 import type { Player, Team } from '@/data/wtl-data';
 
+function TeamLogo({ team, size = 'md' }: { team: Team; size?: 'sm' | 'md' | 'lg' }) {
+  const dims = { sm: 'w-8 h-8 text-base', md: 'w-14 h-14 text-3xl', lg: 'w-20 h-20 text-5xl' };
+  if (team.logoUrl) {
+    return (
+      <img
+        src={team.logoUrl}
+        alt={team.name}
+        className={`${dims[size]} rounded-xl object-cover flex-shrink-0`}
+        style={{ border: `1px solid ${team.color}30` }}
+      />
+    );
+  }
+  return (
+    <div className={`${dims[size]} rounded-xl flex items-center justify-center flex-shrink-0`}
+      style={{ background: `${team.color}15`, border: `1px solid ${team.color}30` }}>
+      {team.logo}
+    </div>
+  );
+}
+
 type Section = 'home' | 'standings' | 'teams' | 'players' | 'schedule';
 
 const rarityColors: Record<string, string> = {
@@ -198,7 +218,7 @@ function HomePage({ navigate }: { navigate: (s: Section) => void }) {
               </div>
               <div className="glass-card rounded-xl p-5 inline-flex items-center gap-8 border" style={{ borderColor: 'rgba(255,59,59,0.3)' }}>
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{getTeamById(liveMatch.homeTeamId)?.logo}</span>
+                  {getTeamById(liveMatch.homeTeamId) && <TeamLogo team={getTeamById(liveMatch.homeTeamId)!} size="sm" />}
                   <span className="font-display font-semibold text-white">{getTeamById(liveMatch.homeTeamId)?.tag}</span>
                 </div>
                 <div className="font-display font-bold text-3xl" style={{ color: 'var(--neon-gold)' }}>
@@ -206,7 +226,7 @@ function HomePage({ navigate }: { navigate: (s: Section) => void }) {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="font-display font-semibold text-white">{getTeamById(liveMatch.awayTeamId)?.tag}</span>
-                  <span className="text-2xl">{getTeamById(liveMatch.awayTeamId)?.logo}</span>
+                  {getTeamById(liveMatch.awayTeamId) && <TeamLogo team={getTeamById(liveMatch.awayTeamId)!} size="sm" />}
                 </div>
               </div>
             </div>
@@ -310,9 +330,7 @@ function StandingsPage({ sortedTeams, openTeam }: { sortedTeams: Team[]; openTea
               </span>
             </div>
             <div className="col-span-4 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base" style={{ background: `${team.color}20` }}>
-                {team.logo}
-              </div>
+              <TeamLogo team={team} size="sm" />
               <div>
                 <div className="font-body font-semibold text-sm text-white group-hover:text-red-400 transition-colors">{team.name}</div>
                 <div className="font-body text-xs" style={{ color: team.color }}>[{team.tag}]</div>
@@ -361,9 +379,7 @@ function TeamsPage({ teams: teamList, openTeam }: { teams: Team[]; openTeam: (t:
             className="glass-card rounded-xl p-6 text-left hover-lift border group transition-all duration-200"
             style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl flex-shrink-0" style={{ background: `${team.color}15`, border: `1px solid ${team.color}30` }}>
-                {team.logo}
-              </div>
+              <TeamLogo team={team} size="md" />
               <div>
                 <div className="font-display font-bold text-lg text-white group-hover:text-yellow-400 transition-colors">{team.name}</div>
                 <div className="font-body text-sm font-medium" style={{ color: team.color }}>[{team.tag}]</div>
@@ -411,9 +427,7 @@ function TeamDetailPage({ team, openPlayer, goBack }: { team: Team; openPlayer: 
       <div className="glass-card rounded-2xl p-8 border mb-8 relative overflow-hidden" style={{ borderColor: `${team.color}30` }}>
         <div className="absolute inset-0 pointer-events-none opacity-5" style={{ background: `radial-gradient(circle at 80% 50%, ${team.color}, transparent 60%)` }} />
         <div className="relative flex flex-col md:flex-row md:items-center gap-6 mb-8">
-          <div className="w-20 h-20 rounded-2xl flex items-center justify-center text-5xl flex-shrink-0" style={{ background: `${team.color}15`, border: `2px solid ${team.color}40` }}>
-            {team.logo}
-          </div>
+          <TeamLogo team={team} size="lg" />
           <div className="flex-1">
             <h1 className="font-display font-bold text-4xl text-white mb-2">{team.name}</h1>
             <div className="flex items-center gap-3 flex-wrap">
@@ -743,7 +757,7 @@ function SchedulePage() {
 
               <div className="flex items-center">
                 <div className="flex items-center gap-3 flex-1">
-                  <span className="text-2xl">{home?.logo}</span>
+                  {home && <TeamLogo team={home} size="sm" />}
                   <div>
                     <div className="font-display font-semibold text-white">{home?.name}</div>
                     <div className="font-body text-xs" style={{ color: home?.color }}>[{home?.tag}]</div>
@@ -765,7 +779,7 @@ function SchedulePage() {
                     <div className="font-display font-semibold text-white">{away?.name}</div>
                     <div className="font-body text-xs" style={{ color: away?.color }}>[{away?.tag}]</div>
                   </div>
-                  <span className="text-2xl">{away?.logo}</span>
+                  {away && <TeamLogo team={away} size="sm" />}
                 </div>
               </div>
             </div>

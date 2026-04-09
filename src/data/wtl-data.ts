@@ -32,6 +32,7 @@ export interface Team {
   name: string;
   tag: string;
   logo: string;
+  logoUrl?: string;
   color: string;
   founded: string;
   wins: number;
@@ -62,6 +63,7 @@ export const teams: Team[] = [
     name: 'Willow Team',
     tag: 'WT',
     logo: '🌿',
+    logoUrl: 'https://cdn.poehali.dev/files/36839b72-c0f0-426c-8064-306215ece274.jpg',
     color: '#4ade80',
     founded: '2026',
     wins: 0, losses: 0, draws: 0, points: 0, winRate: 60,
